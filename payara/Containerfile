@@ -20,4 +20,4 @@ RUN apt-get update && apt-get \
 
 RUN mkdir -p /tmp /glassfish/tmp /glassfish/tmppcm /opt 
 
-CMD ["/opt/payara5/bin/asadmin", "start-domain", "--verbose", "domain1"]
+CMD ["/opt/payara5/bin/asadmin", "start-domain", "--verbose", "domain1"]  
