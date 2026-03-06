@@ -1,15 +1,15 @@
 services:
-  db:
-    image: postgres:16
-    container_name: postgres
-    ports:
-      - 5436:5432
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
-    volumes:
-      - pgdata:/var/lib/postgresql
+  #db:
+  #  image: postgres:16
+  #  container_name: postgres
+  #  ports:
+  #    - 5000:5432
+  #  environment:
+  #    - POSTGRES_USER=${POSTGRES_USER}
+  #    - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+  #    - POSTGRES_DB=${POSTGRES_DB}
+  #  volumes:
+  #    - pgdata:/var/lib/postgresql
     
   payara:
     container_name: payara
@@ -23,15 +23,15 @@ services:
       - "8080:8080"
       - "8181:8181"
       - "4848:4848"
-    depends_on:
-      - db
-  web:
-    image: nginx:1.28-alpine
-    container_name: nginx
-    ports:
-      - "8000:8000"
-    depends_on:
-      - payara
+    #depends_on:
+    #  - db
+  #web:
+  #  image: nginx:1.28-alpine
+  #  container_name: nginx
+  #  ports:
+  #    - "8000:8000"
+  #  depends_on:
+  #    - payara
     
 volumes:
   pgdata: {}

@@ -1,7 +1,7 @@
-FROM docker.io/library/eclipse-temurin:8-jdk-jammy as base 
+FROM docker.io/library/eclipse-temurin:8-jdk-jammy
 
-ARG TIMEZONE=${TIMEZONE}
 ARG PAYARA_DIR=${PAYARA_DIR}
+ARG TIMEZONE=${TIMEZONE}
 
 RUN apt-get update && \
     apt-get install -y unzip && \
@@ -9,10 +9,9 @@ RUN apt-get update && \
 
 RUN mkdir -p /tmp /glassfish/tmp /glassfish/tmppcm /opt 
 
-COPY payara-5.2022.5.zip /tmp/payara5.zip
-RUN unzip /tmp/payara5.zip -d /opt/payara5 && \
-    rm /tmp/payara5.zip && \
-    mv /tmp/payara-5.2022.5/payara5 /opt/payara5 && \
-    rm -rf /tmp/payara-5.2022.5
+COPY payara5.zip /tmp/payara5.zip
 
-CMD ["opt/payara5/bin/asadmin", "start-domain", "--verbose", "domain1"]
+RUN unzip /tmp/payara5.zip -d /opt && \
+    rm /tmp/payara5.zip
+
+CMD ["/opt/payara5/bin/asadmin", "start-domain", "--verbose", "domain1"]
